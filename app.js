@@ -36,9 +36,7 @@ httpsServer.listen(3000, () => {
   console.log('listening on port: ' + 3000)
 })
 
-const io = new Server(httpsServer, {
-  cors: true,
-})
+const io = new Server(httpsServer)
 
 // socket.io namespace (could represent a room?)
 const connections = io.of('/mediasoup')
