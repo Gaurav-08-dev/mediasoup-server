@@ -26,9 +26,12 @@ app.get('*', (req, res, next) => {
 app.use('/sfu/:room', express.static(path.join(__dirname, 'public')))
 
 // SSL cert for HTTPS access
+const keypath=path.join(process.cwd(), 'ssl');
+console.log("--->",keypath)
 const options = {
-  key: fs.readFileSync('./ssl/key.pem', 'utf-8'),
-  cert: fs.readFileSync('./ssl/cert.pem', 'utf-8')
+
+  key: fs.readFileSync(keypath + '/key.pem', 'utf-8'),
+  cert: fs.readFileSync(keypath + '/cert.pem', 'utf-8')
 }
 
 const httpsServer = https.createServer(options, app)
